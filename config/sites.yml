@@ -1,0 +1,17 @@
+development:
+  sample:
+    host: dev.myapp.com
+    port: 80
+    protocol: http
+
+test:
+  sample:
+    host: test.myapp.com
+    port: 80
+    protocol: http
+
+production:
+  sample:
+    host: sample.myapp.com
+    port: 80
+    protocol: https

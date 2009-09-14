@@ -1,0 +1,17 @@
+development:
+  renamed:
+    host: dev.myapp.com
+    port: 80
+    protocol: http
+
+test:
+  renamed:
+    host: test.myapp.com
+    port: 80
+    protocol: http
+
+production:
+  renamed:
+    host: renamed.myapp.com
+    port: 80
+    protocol: http

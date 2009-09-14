@@ -1,2 +1,3 @@
-require 'site_connection'
-ActiveResource::Base.send(:include, Pcss::SiteConnection)
+$:.unshift "#{File.dirname(__FILE__)}/lib"
+require 'site_connection.rb'
+ActiveResource::Base.send(:include, Koinonia::SiteConnection)
