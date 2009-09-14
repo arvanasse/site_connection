@@ -1,0 +1,50 @@
+Provides an 'establish_site_connection' method to ActiveResource::Base that is similar to the 'establish_connection'
+method of ActiveRecord::Base.  The intention is to simplify the process of setting the ActiveResource::Base.site
+in different programming environments.
+
+It assumes a config/sites.yml file that defines the URI components for each environment like this:
+
+development:
+  sample:
+    host: sample.myapp.local
+    port: 80
+    protocol: http
+
+test:
+  sample:
+    host: test.myapp.com
+    port: 80
+    protocol: http
+
+production:
+  sample:
+    host: sample.myapp.com
+    port: 80
+    protocol: https
+    user: secret
+    password: topsecret
+
+
+Given a sites.yml file configured as shown you may call establish_site_connection on the ActiveResource-based class to
+define the site connection like this:
+
+class RemoteWidget < ActiveResource::Base
+  self.site = self.establish_site_connection( :sample )
+end
+
+$ ./script/console development
+>> RemoteWidget.site
+=> #<URI::HTTP:0x351b500 URL:http://sample.myapp.local>
+
+$ ./script/console production
+>> RemoteWidget.site
+=> #<URI::HTTP:0x351b500 URL:http://secret:topsecret@sample.myapp.com>
+
+#######################################
+
+Koinonia::SiteConnection calling establish_site_connection
+- should raise an argument error if the requested Rails environment is not configured
+- should raise an argument error if the requested connection is not defined for the Rails environment
+- should raise an argument error if no parameters are provided
+
+
