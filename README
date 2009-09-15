@@ -42,9 +42,16 @@ $ ./script/console production
 
 #######################################
 
-Koinonia::SiteConnection calling establish_site_connection
+Koinonia::SiteConnection calling establish_site_connection with improper configuration
 - should raise an argument error if the requested Rails environment is not configured
 - should raise an argument error if the requested connection is not defined for the Rails environment
 - should raise an argument error if no parameters are provided
 
-
+Koinonia::SiteConnection calling establish_site_connection with a valid configuration file
+- should load a unique host for the development environment
+- should load a unique host for the production environment
+- should load a unique host for the test environment
+- should support multiple named hosts per environment
+- should include the http basic user if provided
+- should include the http basic user and password if both are provided
+- should ignore the http basic password if it is provided without a user

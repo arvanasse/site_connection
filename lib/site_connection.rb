@@ -34,7 +34,7 @@ module Koinonia
       def add_site_options_from_config_file
         load_environment
 
-        raise(ArgumentError, "#{@site_id.to_s.capitalize} is not defined for #{@environment} environment") unless @@sites[@site_id]
+        raise(ArgumentError, "#{@site_id.to_s.capitalize} is not defined for #{@environment} in #{@load_path}") unless @@sites[@site_id]
         @site_options.merge!( @@sites[@site_id].dup  )
       end
 
@@ -43,7 +43,7 @@ module Koinonia
           environment_configuration = load_environment_from_configuration_file
 
           @@sites = environment_configuration.inject({}) do |sites, (site_key, site_attr)|
-            sites.merge(site_key => symbolize_keys(site_attr))
+            sites.merge(site_key.to_sym => symbolize_keys(site_attr))
           end
         end
       end

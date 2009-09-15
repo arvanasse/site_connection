@@ -9,9 +9,25 @@ test:
     host: test.myapp.com
     port: 80
     protocol: http
+  alternate:
+    host: alt.myapp.com
+    port: 80
+    protocol: http
+  user_and_password:
+    host: test.myapp.com
+    protocol: http
+    user: andy
+    password: secret
+  user_only:
+    host: test.myapp.com
+    protocol: http
+    user: andy
+  password_only:
+    host: test.myapp.com
+    protocol: http
+    password: secret
 
 production:
   sample:
     host: sample.myapp.com
-    port: 80
     protocol: https
